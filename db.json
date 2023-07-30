@@ -1,0 +1,89 @@
+{
+  "employee": [
+    {
+      "employeeId": "E1001",
+      "fullName": "Garvit Jain",
+      "dateOfBirth": "2023-04-05T18:30:00.000Z",
+      "department": "Department 4",
+      "team": "Team i",
+      "techExpertise": [
+        {
+          "technology": "Angular",
+          "expertise": "Beginner"
+        }
+      ],
+      "areasOfInterests": [
+        "Frontend",
+        "Backend",
+        "Testing and Maintenance"
+      ],
+      "preferredWorkingHrs": 9,
+      "profilePicName": "IMG_20230424_114128.jpg",
+      "id": 1
+    },
+    {
+      "employeeId": "765432",
+      "fullName": "hgfds",
+      "dateOfBirth": "2023-07-24T18:30:00.000Z",
+      "department": "Department 2",
+      "team": "Team C",
+      "techExpertise": [
+        {
+          "technology": "React ",
+          "expertise": "Intermediate"
+        }
+      ],
+      "areasOfInterests": [
+        "Testing and Maintenance",
+        "UX Design"
+      ],
+      "preferredWorkingHrs": 8,
+      "profilePicName": "img1.webp",
+      "id": 2
+    }
+  ],
+  "departments": {
+    "department1": {
+      "name": "Department 1",
+      "slug": "department1",
+      "teams": [
+        "Team 1",
+        "Team 2",
+        "Team 3",
+        "Team 4"
+      ],
+      "headOfDepartment": "Mrs. Tanuja"
+    },
+    "department2": {
+      "name": "Department 2",
+      "slug": "department2",
+      "teams": [
+        "Team A",
+        "Team B",
+        "Team C"
+      ],
+      "headOfDepartment": "Mr. Vikram"
+    },
+    "department3": {
+      "name": "Department 3",
+      "slug": "department3",
+      "teams": [
+        "Team I",
+        "Team II",
+        "Team III",
+        "Team IV"
+      ],
+      "headOfDepartment": "Mr. Anil"
+    },
+    "department4": {
+      "name": "Department 4",
+      "slug": "department4",
+      "teams": [
+        "Team i",
+        "Team ii",
+        "Team iii"
+      ],
+      "headOfDepartment": "Mr. Abdul"
+    }
+  }
+}

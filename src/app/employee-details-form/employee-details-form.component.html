@@ -1,0 +1,164 @@
+<form
+  class="employeeForm"
+  [formGroup]="employeeForm"
+  enctype="multipart/form-data"
+>
+  <div class="profilePictureInput">
+    <img
+      [src]="profilePicSrc"
+      height="75"
+      width="75"
+      style="border-radius: 50%; object-fit: contain"
+    />
+    <div>
+      <label for="profilePicUpload" matLabel> Set Profile Picture </label>
+      <input
+        type="file"
+        name="file"
+        id="profilePicUpload"
+        (change)="onFileSelected($event)"
+        style="display: none"
+      />
+    </div>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Employee ID</mat-label>
+    <input
+      required
+      matInput
+      placeholder="Employee ID"
+      formControlName="employeeId"
+    />
+    <mat-icon matSuffix>fingerprint</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Full Name</mat-label>
+    <input
+      required
+      matInput
+      placeholder="Full Name"
+      formControlName="fullName"
+    />
+    <mat-icon matSuffix>article</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="margin-bottom: 16px">
+    <mat-label>Date Of Birth</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Department</mat-label>
+    <mat-select
+      required
+      formControlName="department"
+      (selectionChange)="departmentSelectHandler($event)"
+      [(ngModel)]="departmentSelect"
+    >
+      <mat-option *ngFor="let dept of departments" [value]="dept">
+        {{ dept }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="departmentSelect" appearance="outline">
+    <mat-label>Team</mat-label>
+    <mat-select formControlName="team">
+      <mat-option *ngFor="let team of teams" [value]="team">
+        {{ team }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <h4 style="text-align: center">Tech Stack and Expertise Level</h4>
+
+  <ng-container formArrayName="techExpertise">
+    <ng-container
+      *ngFor="let techExpForm of techExpertise.controls; let i = index"
+    >
+      <div [formGroupName]="i">
+        <mat-form-field appearance="outline">
+          <mat-label>Technology</mat-label>
+          <input
+            required
+            matInput
+            placeholder="Technology"
+            formControlName="technology"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="margin: 0 1rem">
+          <mat-label>Expertise Level</mat-label>
+          <mat-select required formControlName="expertise">
+            <mat-option
+              *ngFor="let expertise of expertiseLevels"
+              [value]="expertise"
+            >
+              {{ expertise }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-icon (click)="removeTechnology(i)">highlight_off</mat-icon>
+      </div>
+    </ng-container>
+
+    <button
+      mat-raised-button
+      (click)="addNewTechnology()"
+      style="width: min-content; margin: 0 auto 1rem"
+    >
+      Add
+    </button>
+  </ng-container>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Areas Of Interests</mat-label>
+    <mat-select formControlName="areasOfInterests" multiple>
+      <mat-option *ngFor="let interest of interestsList" [value]="interest">{{
+        interest
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-card class="example-result-card">
+    <mat-card-content>
+      <div class="example-label-container">
+        <label id="example-name-label" class="example-name-label"
+          >Preferred Working Hours: (Min - 5)</label
+        >
+        <label class="example-value-label">{{ workingHrs }}</label>
+      </div>
+      <mat-slider
+        class="example-margin"
+        [disabled]="false"
+        [max]="max"
+        [min]="min"
+        [step]="step"
+        [discrete]="false"
+        [showTickMarks]="false"
+      >
+        <input
+          matSliderThumb
+          formControlName="preferredWorkingHrs"
+          [(ngModel)]="workingHrs"
+        />
+      </mat-slider>
+    </mat-card-content>
+  </mat-card>
+
+  <button
+    type="submit"
+    mat-raised-button
+    (click)="submitForm()"
+    style="margin: 2rem 0 0"
+    [disabled]="employeeForm.invalid"
+  >
+    SUBMIT DETAILS
+  </button>
+</form>
